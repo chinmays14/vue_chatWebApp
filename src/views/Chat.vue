@@ -9,7 +9,7 @@
               <div class="received_msg">
                 <div class="received_withd_msg">
                   <p><span class="sender_name">{{message.author}}:</span> {{message.message}}</p>
-                  <span class="time_date">{{message.createdAt}}</span>
+                  <span class="time_date">{{dateConvert(message.createdAt)}}</span>
                 </div>
               </div>
             </div>
@@ -65,7 +65,12 @@ export default {
 
       this.message = null;
     },
-
+    dateConvert(dt){
+      var newDate = new Date(dt.seconds*1000);
+      var dateString = newDate.toUTCString();
+      var ist = new Date(dateString).toLocaleString()
+      return ist
+    },
     fetchMessages() {
       db.collection("chat")
         .orderBy("createdAt")
@@ -128,7 +133,7 @@ export default {
   color: #646464;
   font-size: 16px;
   margin: 0;
-  padding: 5px 10px 0px 12px;
+  padding: 10px 5px 0px 12px;
   width: 100%;
 }
 .time_date {
