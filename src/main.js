@@ -5,7 +5,19 @@ import store from './store'
 
 import firebase from 'firebase'
 
-// Required for side-effects
+// Moment
+import moment from 'moment';
+import VueMoment from 'vue-moment';
+
+// Load Locales ('en' comes loaded by default)
+require('moment/locale/es');
+
+// Choose Locale
+moment.locale('es');
+
+Vue.use(VueMoment, { moment });
+// Moment end
+
 require("firebase/firestore");
 
 //App's Firebase configuration
